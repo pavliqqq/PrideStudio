@@ -21,7 +21,11 @@ class WorkerService
     }
     public function update($worker, $data)
     {
+        $orders = $data['orders'];
+        unset($data['orders']);
+
         $worker->update($data);
+        $worker->orders()->sync($orders);
 
         return $worker->fresh();
     }

@@ -3,15 +3,20 @@
 namespace App\Services;
 
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class OrderService
 {
-    public function index($status = null)
+    public function index(Request $request)
     {
         $query = Order::query();
 
-        if ($status && $status !== 'all') {
-            $query->where('status', $status);
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('number') && $request->number !== '') {
+            $query->where('number', $request->number);
         }
 
         return $query->with('workers')->get();
@@ -24,9 +29,16 @@ class OrderService
     {
         return order::create($data);
     }
-    public function update($order, $data)
+    public function update($request, $order, $data)
     {
+        $path = $request->file('image')->store('images/orders', 'public');
+        $data['image'] = 'storage/' . $path;
+
+        $workers = $data['workers'];
+        unset($data['workers']);
+
         $order->update($data);
+        $order->workers()->sync($workers);
 
         return $order->fresh();
     }
