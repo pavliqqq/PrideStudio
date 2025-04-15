@@ -31,8 +31,10 @@ class OrderService
     }
     public function update($request, $order, $data)
     {
-        $path = $request->file('image')->store('images/orders', 'public');
-        $data['image'] = 'storage/' . $path;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('orders', 'public');
+            $data['image'] = 'storage/' . $path;
+        }
 
         $workers = $data['workers'];
         unset($data['workers']);
