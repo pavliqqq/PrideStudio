@@ -9,14 +9,21 @@ class WorkerService
 {
     public function index()
     {
-        return worker::all();
+        $query = worker::query();
+
+        return $query->paginate(3);
     }
     public function show($worker)
     {
         return worker::with('orders')->find($worker);
     }
-    public function create($data)
+    public function create($request, $data)
     {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('workers', 'public');
+            $data['image'] = 'storage/' . $path;
+        }
+
         return worker::create($data);
     }
     public function update($request, $worker, $data)

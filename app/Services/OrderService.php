@@ -19,15 +19,27 @@ class OrderService
             $query->where('number', $request->number);
         }
 
-        return $query->with('workers')->get();
+        return $query->orderBy('id','desc')->with('workers')->paginate(3);
     }
     public function show($order)
     {
         return order::with('workers')->find($order);
     }
-    public function create($data)
+    public function create($request, $data)
     {
-        return order::create($data);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('orders', 'public');
+            $data['image'] = 'storage/' . $path;
+        }
+
+        $workers = $data['workers'];
+        unset($data['workers']);
+
+        $order = order::create($data);
+
+        $order->workers()->sync($workers);
+
+        return $order;
     }
     public function update($request, $order, $data)
     {
