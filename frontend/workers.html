@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список рабочих</title>
+    <link rel="stylesheet" href="workers/style.css">
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+
+    <div id="navbar"></div>
+
+    <!-- Заголовок страницы -->
+    <section class="hero">
+        <div class="container">
+            <h1>Список рабочих</h1>
+        </div>
+    </section>
+    
+    <!-- Хедер блока (кнопка "Создать") -->
+    <div class="workers-header">
+        <div class="container">
+            <a class="btn" href="addWorker.html">Создать</a>
+        </div>
+    </div>
+    
+    <!-- Таблица рабочих -->
+    <section class="workers">
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Имя</th>
+                        <th>Должность</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody id="workers-list">
+                    <!-- Здесь будут загружаться рабочие через JS -->
+                </tbody>
+            </table>
+
+            <div id="pagination" style="margin-top: 20px;"></div>
+            
+        </div>
+    </section>
+
+    <script src="workers/script.js"></script>
+
+    <script>
+        async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHtml = await response.text();
+        document.getElementById("navbar").innerHTML = navbarHtml;
+    }
+    loadNavbar();
+    </script>
+</body>
+</html>

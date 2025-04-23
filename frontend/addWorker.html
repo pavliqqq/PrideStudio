@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Заказы - PrideStudio</title>
+    <link rel="stylesheet" href="/addWorker/style.css">
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+
+    <div class="con">
+        <h1>Добавить нового рабочего</h1>
+        <form id="add-worker-form" enctype="multipart/form-data">
+        
+            <input type="hidden" id="worker-id">
+
+            <label for="worker-image">Изображение</label>
+            <input type="file" id="worker-image" name="image">
+            
+            <label for="worker-name">Имя</label>
+            <input type="text" id="worker-name" required>
+
+            <label for="worker-post">Должность</label>
+            <input type="text" id="worker-post" required>
+
+            <label for="worker-password">Пароль</label>
+            <input type="text" id="worker-password" required>
+            
+            <button type="submit" class="btn">Добавить</button>
+        </form>
+    </div>
+
+    <script src="/addWorker/script.js"></script>
+
+    <script>
+        async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHtml = await response.text();
+        document.getElementById("navbar").innerHTML = navbarHtml;
+    }
+    loadNavbar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказы - PrideStudio</title>
+    <link rel="stylesheet" href="/order/style.css">
+    <link rel="stylesheet" href="/navbar/style.css">
+</head>
+<body>
+
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+
+    <div class="con">
+        <div class="order-card">
+            <p id="order-id"></p>
+            <img id="order-image" src="" alt="Фото заказа">
+            <div class="order-info">
+                <h1 id="order-name"></h1>
+                <p id="order-description"></p>
+                <p><strong>Статус:</strong> <span id="order-status"></span></p>
+                <p><strong>Цена:</strong> <span id="order-price"></span> грн</p>
+                <h2>Назначенные рабочие</h2>
+                <ul id="order-workers"></ul>
+            </div>
+        </div>
+        <a href="editOrder.html">Редактировать</a>
+        <a href="orders.html" class="back-button">← Назад</a>
+    </div>
+
+    <script src="/order/script.js"></script> <!-- Подключаем JS -->
+
+    <script>
+        async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHtml = await response.text();
+        document.getElementById("navbar").innerHTML = navbarHtml;
+    }
+    loadNavbar();
+    </script>
+</body>
+</html>

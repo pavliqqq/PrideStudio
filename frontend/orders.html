@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказы - PrideStudio</title>
+    <link rel="stylesheet" href="/orders/style.css">
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+   <!-- Навигация -->
+   <div id="navbar"></div>
+
+    <!-- Заголовок страницы -->
+    <section class="hero">
+        <div class="container">
+            <h1>Список всех заказов</h1>
+        </div>
+    </section>
+
+    <div class="orders-header">
+        <select id="order-filter">
+            <option value="all">Все</option>
+            <option value="new">Новые</option>
+            <option value="in process">В процессе</option>
+            <option value="ended">Завершен</option>
+        </select>
+        <a class="btn" href="addOrder.html">Создать</a>
+    </div>
+
+        <div class="container">
+            <h2>Список заказов</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Номер клиента</th>
+                        <th>Статус</th>
+                        <th>Цена</th>
+                        <th>Ответственные за выполнение</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-list">
+                    <!-- Здесь будут отображаться заказы через JS -->
+                </tbody>
+            </table>
+
+            <div id="pagination" style="margin-top: 20px;"></div>
+            
+        </div>
+
+
+    <script src="/orders/script.js"></script> <!-- Подключаем JS -->
+
+    <script>
+        async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHtml = await response.text();
+        document.getElementById("navbar").innerHTML = navbarHtml;
+    }
+    loadNavbar();
+    </script>
+</body>
+</html>

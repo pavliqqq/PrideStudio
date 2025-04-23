@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrideStudio</title>
+    <link rel="stylesheet" href="/main/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+    <!-- Главная секция -->
+    <section class="hero">
+        <div class="container">
+            <h1>Добро пожаловать в PrideStudio</h1>
+            <p>Мы обеспечиваем качественные услуги пескоструйной обработки и покраски.</p>
+            <button class="btn" onclick="getSearch()" id="search_button">Найти свой заказ</button>
+                <div class="number_search" id ="number_search" style="display:none" onkeydown="handleEnter(event)">
+                <input type="text" name="number" id="number" class="number_input" placeholder="0_________">
+                <button onclick="search()" id="search_btn">Поиск</button>
+            </div>
+            <p id="number_error"></p>
+            
+ 
+                <table class="orders_table" id="orders_table">
+                    <thead>
+                        <tr>
+                            <th>Заказ</th>
+                            <th>Статус</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list">
+                        <!-- Здесь будут отображаться заказы через JS -->
+                    </tbody>
+                </table>
+
+        </div>
+    </section>
+
+    <!-- Секция с информацией о компании -->
+    <section class="about">
+        <div class="container">
+            <h2>О нас</h2>
+            <p>Мы занимаемся пескоструйной обработкой, порошковой покраской, рихтовкой и другими услугами для автомобилей и промышленных объектов.</p>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/inputmask@5.0.8/dist/inputmask.min.js"></script>
+
+    <script>
+        //Маска на номер
+        const im = new Inputmask("0999999999");
+        im.mask(document.getElementById("number"));
+
+        //Enter на Input
+        function handleEnter(event) {
+    if (event.key === "Enter") {
+        document.getElementById("search_btn").click();
+    }
+}
+    </script>
+
+    <script src="/main/script.js"></script>
+
+    <script>
+        async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHtml = await response.text();
+        document.getElementById("navbar").innerHTML = navbarHtml;
+    }
+    loadNavbar();
+   
+    </script>
+</body>
+</html>

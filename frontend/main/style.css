@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Главная секция */
+.hero {
+    background-color: #f4f4f4;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero .btn {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.125rem;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: #575757;
+}
+
+/* Секция "О нас" */
+.about {
+    background-color: #f9f9f9;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    font-size: 1.125rem;
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* Поиск */
+.number_search {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.number_input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 24px;
+    width: 250px;
+}
+
+.orders_table {
+    display:none;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#orders_table th,
+#orders_table td {
+    padding: 14px 30px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+#orders_table th {
+    background-color: #f0f4ff;
+    font-weight: bold;
+}
+
+#search_btn {
+    background-color: #333;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#search_btn:hover {
+    background-color: #575757;
+    transform: scale(1.03);
+}

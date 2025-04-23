@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о рабочем</title>
+
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="/worker/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+    
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+<!-- Заголовок страницы -->
+<section class="hero">
+    <div class="container">
+        <h1 id="worker-name">Имя рабочего</h1>
+    </div>
+</section>
+
+<!-- Контент -->
+<section class="worker-details">
+    <div class="container">
+        <a class="btn back-btn" href="workers.html">← Назад</a>
+
+        <p id="worker-id" style="display: none"></p>
+
+        <div class="worker-info">
+            <img id="worker-image" src="" alt="Фото рабочего">
+            <div class="worker-meta">
+                <p><strong>Должность:</strong> <span id="worker-post"></span></p>
+                <a class="btn" href="editWorker.html">Редактировать</a>
+            </div>
+        </div>
+
+        <h2>Заказы, в которых участвовал</h2>
+        <ul id="worker-orders" class="order-list">
+            <!-- Список заказов -->
+        </ul>
+    </div>
+</section>
+
+        <script src="/worker/script.js"></script> <!-- Подключаем JS -->
+        <script>
+            async function loadNavbar() {
+            const response = await fetch("navbar.html");
+            const navbarHtml = await response.text();
+            document.getElementById("navbar").innerHTML = navbarHtml;
+        }
+        loadNavbar();
+        </script>
+</body>
+</html>

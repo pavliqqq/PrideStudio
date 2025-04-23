@@ -1,0 +1,43 @@
+/* Навигация */
+.navbar {
+    background-color: #111;
+    color: #fff;
+    padding: 1rem;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+}
+
+.navbar .nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navbar .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}

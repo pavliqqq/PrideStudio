@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.hero {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+/* Кнопка */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3b5bdb;
+}
+
+/* Хедер под заголовком: кнопка "Создать" */
+.workers-header {
+    background-color: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f1f3f5;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+#pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#pagination .btn {
+    padding: 8px 16px;
+    background: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#pagination .btn.active {
+    background: #3b5bdb;
+}
