@@ -45,15 +45,22 @@
         </div>
     </div>
 
+
     <script src="/editWorker/script.js"></script>
 
     <script>
         async function loadNavbar() {
-        const response = await fetch("navbar.html");
-        const navbarHtml = await response.text();
-        document.getElementById("navbar").innerHTML = navbarHtml;
-    }
-    loadNavbar();
-    </script>
+          const response = await fetch("/navbar.html");
+          const navbarHtml = await response.text();
+          document.getElementById("navbar").innerHTML = navbarHtml;
+      
+          // Подключаем скрипт с logout
+          const script = document.createElement('script');
+          script.src = '/navbar/script.js';
+          document.body.appendChild(script);
+        }
+      
+        loadNavbar();
+      </script>
 </body>
 </html>

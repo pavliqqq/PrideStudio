@@ -42,14 +42,22 @@
     </div>
 </section>
 
-        <script src="/worker/script.js"></script> <!-- Подключаем JS -->
-        <script>
-            async function loadNavbar() {
-            const response = await fetch("navbar.html");
-            const navbarHtml = await response.text();
-            document.getElementById("navbar").innerHTML = navbarHtml;
+    <script src="/worker/script.js"></script>
+
+    <script>
+        async function loadNavbar() {
+          const response = await fetch("/navbar.html");
+          const navbarHtml = await response.text();
+          document.getElementById("navbar").innerHTML = navbarHtml;
+      
+          // Подключаем скрипт с logout
+          const script = document.createElement('script');
+          script.src = '/navbar/script.js';
+          document.body.appendChild(script);
         }
+      
         loadNavbar();
-        </script>
+      </script>
+
 </body>
 </html>

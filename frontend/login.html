@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrideStudio</title>
+    <link rel="stylesheet" href="/login/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+        <div class="card">
+            <h2>Вход в систему</h2>
+            <input type="text" id="login" placeholder="ФИО (fullname)" />
+            <input type="password" id="password" placeholder="Пароль" />
+            <button onclick="login()">Войти</button>
+            <div id="error" style="color:red; margin-top:1rem;"></div>
+        </div>
+
+
+    <script src="/login/script.js"></script>
+    
+    <script>
+        async function loadNavbar() {
+          const response = await fetch("/navbar.html");
+          const navbarHtml = await response.text();
+          document.getElementById("navbar").innerHTML = navbarHtml;
+      
+          // Подключаем скрипт с logout
+          const script = document.createElement('script');
+          script.src = '/navbar/script.js';
+          document.body.appendChild(script);
+        }
+      
+        loadNavbar();
+      </script>
+
+</body>
+</html>

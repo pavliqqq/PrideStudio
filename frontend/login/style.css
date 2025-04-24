@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.card {
+    margin:20px auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 300px;
+  }
+  input, button {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  button {
+    background: #222;
+    color: white;
+    font-weight: bold;
+  }

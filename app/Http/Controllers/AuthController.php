@@ -12,7 +12,7 @@ class AuthController extends Controller
         $login = $request->login;
         $password = $request->password;
 
-        $worker = worker::where('fullname', $login)->first();
+        $worker = worker::where('full_name', $login)->first();
         if(!$worker){
             return response()->json(['message' => 'Worker not found'], 404);
         }
@@ -25,6 +25,16 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'worker_id' => $worker->id
         ]);
+    }
+
+    public function logout()
+    {
+        $worker = auth()->user();
+
+        $worker->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out']);
     }
 }
