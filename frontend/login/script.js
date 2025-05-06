@@ -15,6 +15,7 @@ async function login() {
     if (res.ok) {
       localStorage.setItem('token', data.access_token);
       localStorage.setItem('worker_id', data.worker_id);
+      localStorage.setItem('role', data.role);
       window.location.href = `worker.html?id=${data.worker_id}`
     } else {
       document.getElementById('error').innerText = data.message || 'Ошибка входа';

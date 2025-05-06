@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    
     
-    if(role!='admin'){
+    if(role != 'admin'){
         const createButton = document.getElementById('create_button');
 
         createButton.style.display='none';
