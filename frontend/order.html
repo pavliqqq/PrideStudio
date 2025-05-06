@@ -26,24 +26,14 @@
                 <ul id="order-workers"></ul>
             </div>
         </div>
-        <a href="editOrder.html">Редактировать</a>
+        <a href="editOrder.html" id="edit_button">Редактировать</a>
         <a href="orders.html" class="back-button">← Назад</a>
     </div>
 
     <script src="/order/script.js"></script> <!-- Подключаем JS -->
-
-    <script>
-        async function loadNavbar() {
-          const response = await fetch("/navbar.html");
-          const navbarHtml = await response.text();
-          document.getElementById("navbar").innerHTML = navbarHtml;
-      
-          // Подключаем скрипт с logout
-          const script = document.createElement('script');
-          script.src = '/navbar/script.js';
-          document.body.appendChild(script);
-        }
-      
+    
+    <script type="module">
+        import { loadNavbar } from '/navbar/script.js';
         loadNavbar();
       </script>
 </body>

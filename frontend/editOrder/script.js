@@ -1,4 +1,9 @@
+const token = localStorage.getItem('token');
 document.addEventListener("DOMContentLoaded", async function () {
+    if (!token) {
+    window.location.href = '/';
+    }
+    
     const params = new URLSearchParams(window.location.search);
     const orderId = params.get("id");
 
@@ -13,10 +18,22 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const orderResponse = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`);
+        const orderResponse = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`,{
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+              },
+        });
         const order = await orderResponse.json();
 
-        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers`);
+        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`,{
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+              },
+        });
         const workers = await workersResponse.json();
 
 
@@ -73,6 +90,9 @@ document.getElementById("edit-order-form").addEventListener("submit", async func
         console.log(`Финальный URL запроса: http://127.0.0.1:8000/api/orders/${orderId}`);
         const response = await fetch(`http://127.0.0.1:8000/api/orders/${orderId}`, {
             method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+              },
             body: formData
         });
 

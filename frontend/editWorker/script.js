@@ -1,4 +1,9 @@
+const token = localStorage.getItem('token');
 document.addEventListener("DOMContentLoaded", async function () {
+    if (!token) {
+    window.location.href = '/';
+    }
+    
     const params = new URLSearchParams(window.location.search);
     const workerId = params.get("id");
 
@@ -13,7 +18,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const workerResponse = await fetch(`http://127.0.0.1:8000/api/worker/${workerId}`);
+        const workerResponse = await fetch(`http://127.0.0.1:8000/api/worker/${workerId}`,{
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+              },
+        });
         const worker = await workerResponse.json();
 
 
@@ -54,6 +65,9 @@ document.getElementById("edit-worker-form").addEventListener("submit", async fun
     try {
         const response = await fetch(`http://127.0.0.1:8000/api/workers/${workerId}`, {
             method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+              },
             body: formData
         });
 

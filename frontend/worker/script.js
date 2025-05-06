@@ -1,4 +1,12 @@
+const token = localStorage.getItem('token');
+
+const role = localStorage.getItem('role');
+
 document.addEventListener('DOMContentLoaded', async () => {
+    if (!token) {
+    window.location.href = '/';
+    }
+
     const params = new URLSearchParams(window.location.search);
     const workerId = params.get("id");
 
@@ -8,7 +16,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/worker/${workerId}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/worker/${workerId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/json',
+            },
+          });
         const worker = await response.json();
 
 
@@ -48,3 +62,10 @@ function updateEditLink(workerId) {
         editLink.href = `editWorker.html?id=${workerId}`;
     }
 }
+
+if(role!='admin')
+    {
+        const editButton = document.getElementById('edit_button');
+
+        editButton.style.display = 'none';
+    }

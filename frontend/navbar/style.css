@@ -41,3 +41,18 @@
     background-color: #575757;
     border-radius: 5px;
 }
+
+#logout-button button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#logout-button button:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}

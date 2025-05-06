@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class OrderController extends Controller
 {
+    use AuthorizesRequests;
     protected $orderService;
 
     public function __construct(OrderService $orderService)
@@ -24,11 +26,16 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderService->show($id);
+
+        $this->authorize('view', $order);
+
         return response()->json($order, 200);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Order::class);
+
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -44,6 +51,8 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
+        $this->authorize('update', $order);
+
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -60,6 +69,8 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
+        $this->authorize('delete', $order);
+
         $order = $this->orderService->delete($order);
         return response()->json($order, 200);
     }

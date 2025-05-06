@@ -25,7 +25,7 @@
             <option value="in process">В процессе</option>
             <option value="ended">Завершен</option>
         </select>
-        <a class="btn" href="addOrder.html">Создать</a>
+        <a class="btn" href="addOrder.html" id="create_button">Создать</a>
     </div>
 
         <div class="container">
@@ -38,7 +38,6 @@
                         <th>Статус</th>
                         <th>Цена</th>
                         <th>Ответственные за выполнение</th>
-                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody id="orders-list">
@@ -53,18 +52,8 @@
 
     <script src="/orders/script.js"></script> 
 
-    <script>
-        async function loadNavbar() {
-          const response = await fetch("/navbar.html");
-          const navbarHtml = await response.text();
-          document.getElementById("navbar").innerHTML = navbarHtml;
-      
-          // Подключаем скрипт с logout
-          const script = document.createElement('script');
-          script.src = '/navbar/script.js';
-          document.body.appendChild(script);
-        }
-      
+    <script type="module">
+        import { loadNavbar } from '/navbar/script.js';
         loadNavbar();
       </script>
 </body>

@@ -56,25 +56,15 @@
     <script>
         //Маска на номер
         const im = new Inputmask("0999999999");
-        im.mask(document.getElementById("number"));
+        im.mask(document.getElementById("order-number"));
 
     </script>
     
    
     <script src="/addOrder/script.js"></script>
 
-    <script>
-        async function loadNavbar() {
-          const response = await fetch("/navbar.html");
-          const navbarHtml = await response.text();
-          document.getElementById("navbar").innerHTML = navbarHtml;
-      
-          // Подключаем скрипт с logout
-          const script = document.createElement('script');
-          script.src = '/navbar/script.js';
-          document.body.appendChild(script);
-        }
-      
+    <script type="module">
+        import { loadNavbar } from '/navbar/script.js';
         loadNavbar();
       </script>
 

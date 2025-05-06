@@ -13,29 +13,19 @@
 
         <div class="card">
             <h2>Вход в систему</h2>
-            <input type="text" id="login" placeholder="ФИО (fullname)" />
-            <input type="password" id="password" placeholder="Пароль" />
-            <button onclick="login()">Войти</button>
+            <input type="text" id="login" placeholder="Login" />
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="login()" class="login_button">Войти</button>
             <div id="error" style="color:red; margin-top:1rem;"></div>
         </div>
 
 
     <script src="/login/script.js"></script>
     
-    <script>
-        async function loadNavbar() {
-          const response = await fetch("/navbar.html");
-          const navbarHtml = await response.text();
-          document.getElementById("navbar").innerHTML = navbarHtml;
-      
-          // Подключаем скрипт с logout
-          const script = document.createElement('script');
-          script.src = '/navbar/script.js';
-          document.body.appendChild(script);
-        }
-      
-        loadNavbar();
-      </script>
+    <script type="module">
+      import { loadNavbar } from '/navbar/script.js';
+      loadNavbar();
+    </script>
 
 </body>
 </html>

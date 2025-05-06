@@ -33,6 +33,7 @@ class WorkerService
         }
         $password = $data['password'];
         $data['password'] = Hash::make($password);
+        $data['role'] = 'worker';
 
         return worker::create($data);
     }
@@ -46,6 +47,7 @@ class WorkerService
 
         $password = $data['password'];
         $data['password'] = Hash::make($password);
+        $data['role'] = 'worker';
 
         return $worker->update($data);
     }

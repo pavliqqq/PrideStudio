@@ -1,8 +1,27 @@
+const token = localStorage.getItem('token');
+
+const role = localStorage.getItem('role');
+
 document.addEventListener('DOMContentLoaded', () => {
+    if (!token) {
+    window.location.href = '/';
+    }
+    
+    if(role!='admin'){
+        const createButton = document.getElementById('create_button');
+
+        createButton.style.display = 'none';
+    }
     let currentPage = 1;
 
     async function fetchWorkers(page = 1) {
-        const response = await fetch(`http://127.0.0.1:8000/api/workers?page=${page}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/workers?page=${page}`,{
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+              },
+            });
         const data = await response.json();
     
         console.log(data); // Лог для проверки
@@ -16,9 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${worker.id}</td>
                 <td><a href="worker.html?id=${worker.id}">${worker.full_name}</a></td>
                 <td>${worker.post}</td>
-                <td>
-                    <button class="btn" onclick="deleteWorker(${worker.id})">Удалить</button>
-                </td>
+                ${role=='admin' ?`
+                    <td>
+                         <button class="btn" onclick="deleteWorker(${order.id})">Удалить</button>
+                    </td>` : ''}
             `;
             workersList.appendChild(row);
         });
@@ -52,7 +72,8 @@ async function deleteWorker(workerId){
     const response = await fetch(`http://127.0.0.1:8000/api/workers/${workerId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
         }
     });
 

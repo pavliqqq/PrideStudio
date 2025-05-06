@@ -20,7 +20,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 0.5rem;
   }
-  button {
+  .login_button {
     background: #222;
     color: white;
     font-weight: bold;

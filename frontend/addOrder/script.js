@@ -1,7 +1,18 @@
+const token = localStorage.getItem('token');
 document.addEventListener("DOMContentLoaded", async function () {
+    if (!token) {
+    window.location.href = '/';
+    }
+    
 
     try {
-        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`);
+        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`,{
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+              }
+        });
         const workers = await workersResponse.json();
 
         const workersList = document.getElementById("workers-list");
@@ -45,6 +56,9 @@ document.getElementById("add-order-form").addEventListener("submit", async funct
         console.log(`Финальный URL запроса: http://127.0.0.1:8000/api/orders/create`);
         const response = await fetch(`http://127.0.0.1:8000/api/orders/create`, {
             method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+              },
             body: formData
         });
 

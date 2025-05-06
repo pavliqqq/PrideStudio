@@ -1,11 +1,15 @@
 <nav class="navbar">
     <div class="container">
         <a href="/" class="logo">PrideStudio</a>
-        <ul class="nav-links">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/orders.html">Заказы</a></li>
-            <li><a href="/workers.html">Рабочие</a></li>
-            <li><button onclick="logout()">Выход</button></li>
+        <ul class="nav-links" id="nav_links">
+            <li><a href="/" id="main-link">Главная</a></li>
+            <li><a href="/orders.html" id="orders-link">Заказы</a></li>
+            <li><a href="/workers.html" id="workers-link">Рабочие</a></li>
+            <li id="logout-button" style="display: none;">
+                <button>Выход</button>
+              </li>
         </ul>
     </div>
 </nav>
+
+<script src="navbar/script.js"></script>

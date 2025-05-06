@@ -1,4 +1,19 @@
+const token = localStorage.getItem('token');
+
+const role = localStorage.getItem('role');
+
 document.addEventListener('DOMContentLoaded', () => {
+    if (!token) {
+    window.location.href = '/';
+    }
+
+   
+    
+    if(role!='admin'){
+        const createButton = document.getElementById('create_button');
+
+        createButton.style.display='none';
+    }
     let currentPage = 1;
     let currentStatus = 'all';
 
@@ -22,9 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${order.status}</td>
                 <td>${order.price}</td>
                 <td>${order.workers.map(worker => worker.full_name).join(', ')}</td>
+                ${role=='admin' ?`
                 <td>
-                    <button class="btn" onclick="deleteOrder(${order.id})">Удалить</button>
-                </td>
+                     <button class="btn" onclick="deleteOrder(${order.id})">Удалить</button>
+                </td>` : ''}
             `;
             ordersList.appendChild(row);
         });
@@ -64,7 +80,8 @@ async function deleteOrder(orderId) {
     const response = await fetch(`http://127.0.0.1:8000/api/orders/${orderId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
         }
     });
 

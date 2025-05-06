@@ -21,7 +21,7 @@
     <!-- Хедер блока (кнопка "Создать") -->
     <div class="workers-header">
         <div class="container">
-            <a class="btn" href="addWorker.html">Создать</a>
+            <a class="btn" href="addWorker.html" id="create_button">Создать</a>
         </div>
     </div>
     
@@ -34,7 +34,6 @@
                         <th>№</th>
                         <th>Имя</th>
                         <th>Должность</th>
-                        <th>Действие</th>
                     </tr>
                 </thead>
                 <tbody id="workers-list">
@@ -49,18 +48,8 @@
 
     <script src="workers/script.js"></script>
 
-    <script>
-        async function loadNavbar() {
-          const response = await fetch("/navbar.html");
-          const navbarHtml = await response.text();
-          document.getElementById("navbar").innerHTML = navbarHtml;
-      
-          // Подключаем скрипт с logout
-          const script = document.createElement('script');
-          script.src = '/navbar/script.js';
-          document.body.appendChild(script);
-        }
-      
+    <script type="module">
+        import { loadNavbar } from '/navbar/script.js';
         loadNavbar();
       </script>
 </body>

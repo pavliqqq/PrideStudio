@@ -1,3 +1,7 @@
+const token = localStorage.getItem('token');
+
+const role = localStorage.getItem('role');
+
 document.addEventListener("DOMContentLoaded", async function () {
     const params = new URLSearchParams(window.location.search);
     const orderId = params.get("id");
@@ -8,7 +12,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/json',
+            },
+        });
         const order = await response.json();
 
         const imagePath = order.image;
@@ -48,3 +58,10 @@ function updateEditLink(orderId) {
         editLink.href = `editOrder.html?id=${orderId}`;
     }
 }
+
+if(role!='admin')
+    {
+        const editButton = document.getElementById('edit_button');
+
+        editButton.style.display = 'none';
+    }

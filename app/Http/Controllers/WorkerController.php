@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\order;
 use App\Models\worker;
 use App\Services\WorkerService;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WorkerController extends Controller
 {
+    use AuthorizesRequests;
     protected $workerService;
 
     public function __construct(WorkerService $workerService)
@@ -35,6 +38,8 @@ class WorkerController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', worker::class);
+
         $data = $request->validate([
             'full_name' => 'required|string|max:255',
             'image' => 'required | image | mimes:jpeg,png,jpg,gif|max:2048',
@@ -49,6 +54,8 @@ class WorkerController extends Controller
 
     public function update(Request $request, Worker $worker)
     {
+        $this->authorize('update', $worker);
+
         $data = $request->validate([
             'full_name' => 'required|string|max:255',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif|max:2048',
@@ -61,6 +68,8 @@ class WorkerController extends Controller
 
     public function destroy(Worker $worker)
     {
+        $this->authorize('delete', $worker);
+
         $worker = $this->workerService->delete($worker);
         return response()->json($worker, 200);
     }
