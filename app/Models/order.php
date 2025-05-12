@@ -13,6 +13,6 @@ class order extends Model
 
     public function workers()
     {
-        return $this->belongsToMany(worker::class);
+        return $this->belongsToMany(worker::class)->withPivot('date');
     }
 }

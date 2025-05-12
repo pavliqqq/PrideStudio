@@ -13,6 +13,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/order/{order}', [OrderController::class, 'show']);
     Route::get('/worker/{worker}', [WorkerController::class, 'show']);
+    Route::get('/workerOrders/{worker}', [WorkerController::class, 'showOrders']);
+    Route::get('/worker/tasks/week', [WorkerController::class, 'weekTasks']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/orders/create', [OrderController::class, 'store']);
     Route::patch('/orders/{order}', [OrderController::class, 'update']);

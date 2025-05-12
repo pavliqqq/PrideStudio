@@ -19,7 +19,6 @@ class AuthController extends Controller
         if(!Hash::check($password, $worker->password)){
             return response()->json(['message' => 'Incorrect password'], 401);
         }
-
         $token = $worker->createToken('auth_token')->plainTextToken;
 
         return response()->json([

@@ -16,14 +16,14 @@
 <!-- Заголовок страницы -->
 <section class="hero">
     <div class="container">
-        <h1 id="worker-name">Имя рабочего</h1>
+        <h1 id="worker-name"></h1>
     </div>
 </section>
 
 <!-- Контент -->
 <section class="worker-details">
     <div class="container">
-        <a class="btn back-btn" href="workers.html">← Назад</a>
+        <a class="btn back-btn">← Назад</a>
 
         <p id="worker-id" style="display: none"></p>
 
@@ -32,13 +32,14 @@
             <div class="worker-meta">
                 <p><strong>Должность:</strong> <span id="worker-post"></span></p>
                 <a class="btn" href="editWorker.html" id="edit_button">Редактировать</a>
+                <a class="btn" href="workerOrders.html" id="orders_button">Все заказы</a>
             </div>
         </div>
 
-        <h2>Заказы, в которых участвовал</h2>
-        <ul id="worker-orders" class="order-list">
-            <!-- Список заказов -->
-        </ul>
+        <section class="week-tasks-section">
+            <h2>План на неделю</h2>
+            <div id="week-tasks" class="week-tasks-container"></div>
+        </section>
     </div>
 </section>
 

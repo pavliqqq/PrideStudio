@@ -14,6 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createButton.style.display='none';
     }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Месяцы с 0
+        const year = date.getFullYear();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        
+        return `${day}.${month}.${year} ${hours}:${minutes}`;
+    }
+
+
     let currentPage = 1;
     let currentStatus = 'all';
 
@@ -33,10 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${order.id}</td>
-                <td><a href="order.html?id=${order.id}">${order.number}</a></td>
+                <td><a href="order.html?id=${order.id}">${order.name}</a></td>
+                <td>${order.number}</td>
                 <td>${order.status}</td>
                 <td>${order.price}</td>
                 <td>${order.workers.map(worker => worker.full_name).join(', ')}</td>
+                <td>${formatDate(order.created_at)}</td>
                 ${role=='admin' ?`
                 <td>
                      <button class="btn" onclick="deleteOrder(${order.id})">Удалить</button>

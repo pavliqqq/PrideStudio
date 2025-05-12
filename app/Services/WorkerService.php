@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\worker;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class WorkerService
@@ -23,6 +24,34 @@ class WorkerService
     public function show($worker)
     {
         return worker::with('orders')->find($worker);
+    }
+
+    public function showOrders($worker)
+    {
+        $worker = worker::with('orders')->find($worker);
+        $orders = $worker->orders()->paginate(10);
+
+        return response()->json([
+            'worker' => $worker,
+            'orders' => $orders,
+        ]);
+    }
+
+    public function weekTasks($worker){
+        $worker = worker::with('orders')->find($worker);;
+
+        $startDate = now()->startOfDay();
+        $endDate = now()->addDays(6)->endOfDay();
+
+        return $worker
+            ->orders()
+            ->withPivot('date')
+            ->whereBetween('order_worker.date',[$startDate,$endDate])
+            ->orderBy('order_worker.date')
+            ->get()
+            ->groupBy(function ($order) {
+                return Carbon::parse($order->pivot->date)->format('Y-m-d');
+            });
     }
 
     public function create($request, $data)

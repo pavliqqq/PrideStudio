@@ -1,9 +1,9 @@
 const token = localStorage.getItem('token');
 document.addEventListener("DOMContentLoaded", async function () {
     if (!token) {
-    window.location.href = '/';
+        window.location.href = '/';
     }
-    
+
     const params = new URLSearchParams(window.location.search);
     const orderId = params.get("id");
 
@@ -18,24 +18,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const orderResponse = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`,{
+        const orderResponse = await fetch(`http://127.0.0.1:8000/api/order/${orderId}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Accept': 'application/json',
-              },
+            },
         });
         const order = await orderResponse.json();
 
-        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`,{
+        const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Accept': 'application/json',
-              },
+            },
         });
         const workers = await workersResponse.json();
-
 
         document.getElementById("order-id").value = order.id;
         document.getElementById("order-name").value = order.name;
@@ -47,14 +46,32 @@ document.addEventListener("DOMContentLoaded", async function () {
         const workersList = document.getElementById("workers-list");
         workers.forEach(worker => {
             const isChecked = order.workers.some(w => w.id === worker.id);
-            const workerItem = `
+            const dateValue = isChecked
+                ? order.workers.find(w => w.id === worker.id).pivot.date
+                : "";
+
+            const workerItem = document.createElement("div");
+            workerItem.classList.add("worker-item");
+
+            workerItem.innerHTML = `
                 <label>
                     <input type="checkbox" class="worker-checkbox" value="${worker.id}" ${isChecked ? "checked" : ""}>
                     ${worker.full_name} - ${worker.post}
-                </label><br>
+                </label>
+                <input type="date" class="worker-date" value="${dateValue}" style="display: ${isChecked ? "inline" : "none"};">
             `;
-            workersList.innerHTML += workerItem;
+
+            workersList.appendChild(workerItem);
         });
+
+        
+        document.querySelectorAll('.worker-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const dateInput = e.target.closest('.worker-item').querySelector('.worker-date');
+                dateInput.style.display = e.target.checked ? 'inline' : 'none';
+            });
+        });
+
     } catch (error) {
         console.error("Ошибка при загрузке заказа:", error);
     }

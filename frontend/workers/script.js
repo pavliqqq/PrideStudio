@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${worker.post}</td>
                 ${role=='admin' ?`
                     <td>
-                         <button class="btn" onclick="deleteWorker(${order.id})">Удалить</button>
+                         <button class="btn" onclick="deleteWorker(${worker.id})">Удалить</button>
                     </td>` : ''}
             `;
             workersList.appendChild(row);

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о рабочем</title>
+
+    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="/workerOrders/style.css"> <!-- Подключаем стили -->
+</head>
+<body>
+    
+    <!-- Навигация -->
+    <div id="navbar"></div>
+
+<!-- Заголовок страницы -->
+<section class="hero">
+    <div class="container">
+        <h1 id="worker-name"></h1>
+    </div>
+</section>
+
+<!-- Контент -->
+<section class="worker-details">
+    <div class="container">
+        <a class="btn back-btn" href="worker.html" id="back_button">← Назад</a>
+
+        <p id="worker-id" style="display: none"></p>
+
+        <h2>Заказы, в которых участвовал</h2>
+        <ul id="worker-orders" class="order-list">
+            <!-- Список заказов -->
+        </ul>
+    </div>
+
+     <div id="pagination" style="margin-top: 20px;"></div>
+</section>
+
+    <script src="/workerOrders/script.js"></script>
+
+    <script type="module">
+        import { loadNavbar } from '/navbar/script.js';
+        loadNavbar();
+      </script>
+
+</body>
+</html>

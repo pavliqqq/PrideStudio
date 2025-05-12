@@ -44,8 +44,8 @@ form label {
     font-weight: bold;
 }
 
-form input, form select, form textarea {
-    width: 100%;
+.form_top_con input, form select, form textarea {
+    width:100%;
     padding: 12px;
     margin-top: 8px;
     border-radius: 8px;
@@ -82,4 +82,17 @@ form input, form select, form textarea {
 
 .back-btn:hover {
     background-color: #d0d0d0;
+}
+
+.worker-item{
+    display:flex;
+    justify-content: space-between;
+}
+
+.worker-item input{
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }

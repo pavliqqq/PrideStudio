@@ -36,6 +36,18 @@ class WorkerController extends Controller
         return response()->json($worker, 200);
     }
 
+    public function showOrders($id)
+    {
+        $worker = $this->workerService->showOrders($id);
+        return response()->json($worker, 200);
+    }
+
+    public function weekTasks(Request $request){
+        $id = $request->query('id');
+        $orders = $this->workerService->weekTasks($id);
+        return response()->json($orders, 200);
+    }
+
     public function store(Request $request)
     {
         $this->authorize('create', worker::class);

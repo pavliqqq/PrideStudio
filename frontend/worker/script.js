@@ -36,30 +36,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('worker-post').textContent = worker.post;
 
         updateEditLink(worker.id);
+        updateOrdersLink(worker.id);
 
-        // Выводим заказы
-        const ordersList = document.getElementById('worker-orders');
-        ordersList.innerHTML = ''; // Очищаем список
-
-        if (worker.orders.length === 0) {
-            ordersList.innerHTML = "<p>Этот рабочий пока не участвовал в заказах.</p>";
-        } else {
-            worker.orders.forEach(order => {
-                const orderItem = document.createElement('li');
-                orderItem.innerHTML = `<a href="order.html?id=${order.id}">${order.name}</a> - ${order.status}, ${order.price} грн`;
-                ordersList.appendChild(orderItem);
-            });
-        }
     } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
         alert("Ошибка при загрузке информации о рабочем!");
     }
+    weekTasks(workerId);
 });
 
 function updateEditLink(workerId) {
     const editLink = document.querySelector("a[href='editWorker.html']");
     if (editLink) {
         editLink.href = `editWorker.html?id=${workerId}`;
+    }
+}
+function updateOrdersLink(workerId) {
+    const editLink = document.querySelector("a[href='workerOrders.html']");
+    if (editLink) {
+        editLink.href = `workerOrders.html?id=${workerId}`;
     }
 }
 
@@ -69,3 +64,43 @@ if(role!='admin')
 
         editButton.style.display = 'none';
     }
+
+async function weekTasks(workerId) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/worker/tasks/week?id=${workerId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+            },
+        });
+
+        const weekOrders = await response.json();
+        const ordersContainer = document.getElementById('week-tasks');
+        ordersContainer.innerHTML = ''; // очистка
+
+        const days = Object.keys(weekOrders);
+
+        if (days.length === 0) {
+            ordersContainer.innerHTML = "<p>На эту неделю задач нет.</p>";
+            return;
+        }
+
+        days.forEach(date => {
+            const dayBlock = document.createElement('div');
+            dayBlock.classList.add('day-tasks');
+
+            const readableDate = new Date(date).toLocaleDateString("ru-RU", { weekday: 'long', day: 'numeric', month: 'long' });
+
+            let html = `<h3>${readableDate}</h3><ul>`;
+            weekOrders[date].forEach(order => {
+                html += `<li><a href="order.html?id=${order.id}">${order.name}</a> - ${order.status}, ${order.price} грн</li>`;
+            });
+            html += '</ul>';
+            dayBlock.innerHTML = html;
+            ordersContainer.appendChild(dayBlock);
+        });
+    } catch (err) {
+        console.error("Ошибка при получении задач на неделю:", err);
+    }
+}

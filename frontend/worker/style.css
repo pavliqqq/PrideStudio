@@ -96,3 +96,68 @@ body {
 .btn:hover {
     background-color: #3b5bdb;
 }
+
+.week-tasks-section {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Контейнер для всех дней недели */
+.week-tasks-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 дней */
+    gap: 20px;
+    padding: 0 10px;
+}
+
+/* Карточка для дня */
+.day-tasks {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Стиль для заголовка дня */
+.day-tasks h3 {
+    font-size: 1.2rem;
+    color: #2a2a2a;
+    margin-bottom: 10px;
+}
+
+/* Список заказов */
+.day-tasks ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Элемент списка заказа */
+.day-tasks li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Ссылка на заказ */
+.day-tasks li a {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.day-tasks li a:hover {
+    text-decoration: underline;
+}
+
+/* Псевдоклассы для карточек */
+.day-tasks:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
