@@ -26,15 +26,20 @@ class WorkerService
         return worker::with('orders')->find($worker);
     }
 
-    public function showOrders($worker)
+    public function showOrders($id)
     {
-        $worker = worker::with('orders')->find($worker);
-        $orders = $worker->orders()->paginate(10);
+        $worker = Worker::with('orders')->find($id);
 
-        return response()->json([
+        if (!$worker) {
+            return ['error' => 'Worker not found'];
+        }
+
+        $orders = $worker->orders()->orderBy('id','desc')->paginate(10);
+
+        return [
             'worker' => $worker,
             'orders' => $orders,
-        ]);
+        ];
     }
 
     public function weekTasks($worker){

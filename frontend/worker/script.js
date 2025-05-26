@@ -94,7 +94,13 @@ async function weekTasks(workerId) {
 
             let html = `<h3>${readableDate}</h3><ul>`;
             weekOrders[date].forEach(order => {
-                html += `<li><a href="order.html?id=${order.id}">${order.name}</a> - ${order.status}, ${order.price} грн</li>`;
+                html += `
+                <li class="order-item">
+                    <img src="http://127.0.0.1:8000/${order.image}" alt="${order.name}" class="order-thumb">
+                    <div class="order-info">
+                        <a href="order.html?id=${order.id}">${order.name}</a> - ${order.status}, ${order.price} грн
+                    </div>
+                </li>`;
             });
             html += '</ul>';
             dayBlock.innerHTML = html;

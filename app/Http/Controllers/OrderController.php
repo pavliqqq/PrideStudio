@@ -43,7 +43,8 @@ class OrderController extends Controller
             'image' => 'required | image | mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required',
             'price' => 'required|numeric|min:0',
-            'workers' => 'nullable|array'
+            'workers' => 'nullable|array',
+            'dates' => 'nullable|array'
         ]);
         $order = $this->orderService->create($request, $data);
         return response()->json($order, 201);
@@ -60,7 +61,8 @@ class OrderController extends Controller
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required',
             'price' => 'required|numeric|min:0',
-            'workers' => 'nullable|array'
+            'workers' => 'nullable|array',
+            'dates' => 'nullable|array'
         ]);
 
         $order = $this->orderService->update($request, $order, $data);

@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <input type="checkbox" class="worker-checkbox" value="${worker.id}" ${isChecked ? "checked" : ""}>
                     ${worker.full_name} - ${worker.post}
                 </label>
-                <input type="date" class="worker-date" value="${dateValue}" style="display: ${isChecked ? "inline" : "none"};">
+                <input type="date" class="worker-date" value="${dateValue}"
+                 style="display: ${isChecked ? "inline" : "none"};">
             `;
 
             workersList.appendChild(workerItem);
@@ -96,9 +97,14 @@ document.getElementById("edit-order-form").addEventListener("submit", async func
         formData.append("image", imageInput.files[0]);
     }
 
-    const workers = Array.from(document.querySelectorAll(".worker-checkbox:checked")).map(cb => cb.value);
-    workers.forEach(id => {
-        formData.append('workers[]', id);
+    const workers = Array.from(document.querySelectorAll(".worker-checkbox:checked"));
+    workers.forEach(cb => {
+        const workerId = cb.value;
+        const dateInput = cb.closest('.worker-item').querySelector('.worker-date');
+        const dateValue = dateInput ? dateInput.value : null;
+
+        formData.append('workers[]', workerId);
+        formData.append('dates[]', dateValue);
     });
 
     formData.append('_method', 'PATCH');

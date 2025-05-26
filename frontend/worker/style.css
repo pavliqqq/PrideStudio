@@ -161,3 +161,26 @@ h2 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
 }
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.order-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.order-info a {
+    font-weight: bold;
+    color: #0066cc;
+    text-decoration: none;
+}
+.order-info a:hover {
+    text-decoration: underline;
+}

@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.location.href = '/';
     }
     
+const backButton = document.getElementById("back-button");
+    if (backButton) {
+        backButton.href = `orders.html`;
+    }
+
 
     try {
         const workersResponse = await fetch(`http://127.0.0.1:8000/api/workers/all`,{
@@ -15,15 +20,27 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
         const workers = await workersResponse.json();
 
-        const workersList = document.getElementById("workers-list");
+       const workersList = document.getElementById("workers-list");
         workers.forEach(worker => {
-            const workerItem = `
+
+            const workerItem = document.createElement("div");
+            workerItem.classList.add("worker-item");
+
+            workerItem.innerHTML = `
                 <label>
                     <input type="checkbox" class="worker-checkbox" value="${worker.id}">
                     ${worker.full_name} - ${worker.post}
-                </label><br>
+                </label>
+                <input type="date" class="worker-date" style="display: none;">
             `;
-            workersList.innerHTML += workerItem;
+            workersList.appendChild(workerItem);
+        });
+
+         document.querySelectorAll('.worker-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const dateInput = e.target.closest('.worker-item').querySelector('.worker-date');
+                dateInput.style.display = e.target.checked ? 'inline' : 'none';
+            });
         });
     } catch (error) {
         console.error("Ошибка при загрузке заказа:", error);
@@ -47,9 +64,14 @@ document.getElementById("add-order-form").addEventListener("submit", async funct
         formData.append("image", imageInput.files[0]);
     }
 
-    const workers = Array.from(document.querySelectorAll(".worker-checkbox:checked")).map(cb => cb.value);
-    workers.forEach(id => {
-        formData.append('workers[]', id);
+    const workers = Array.from(document.querySelectorAll(".worker-checkbox:checked"));
+    workers.forEach(cb => {
+        const workerId = cb.value;
+        const dateInput = cb.closest('.worker-item').querySelector('.worker-date');
+        const dateValue = dateInput ? dateInput.value : null;
+
+        formData.append('workers[]', workerId);
+        formData.append('dates[]', dateValue);
     });
 
     try {

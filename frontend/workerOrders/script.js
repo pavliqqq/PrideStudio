@@ -1,5 +1,4 @@
 const token = localStorage.getItem('token');
-
 const role = localStorage.getItem('role');
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -29,6 +28,13 @@ async function fetchOrders(workerId, page = 1) {
             },
         });
 
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Ошибка от сервера:", errorData);
+            alert("Ошибка: " + (errorData.message || "Не удалось загрузить заказы."));
+            return;
+        }
+
         const data = await response.json();
         const worker = data.worker;
         const orders = data.orders.data;
@@ -39,12 +45,11 @@ async function fetchOrders(workerId, page = 1) {
         const ordersList = document.getElementById('worker-orders');
         ordersList.innerHTML = '';
 
-        if (orders.length === 0) {
+        if (!orders || orders.length === 0) {
             ordersList.innerHTML = "<p>Этот рабочий пока не участвовал в заказах.</p>";
         } else {
             orders.forEach(order => {
-                const imagePath = order.image;
-                const imageUrl = `http://127.0.0.1:8000/${imagePath}`;
+                const imageUrl = `http://127.0.0.1:8000/${order.image}`;
                 const orderItem = document.createElement('li');
                 orderItem.classList.add('order-item');
                 orderItem.innerHTML = `
@@ -61,7 +66,7 @@ async function fetchOrders(workerId, page = 1) {
             });
         }
 
-        renderPagination(data.orders, workerId); // Передаём workerId
+        renderPagination(data.orders, workerId);
     } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
         alert("Ошибка при загрузке заказов рабочего!");

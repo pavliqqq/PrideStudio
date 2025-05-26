@@ -33,11 +33,18 @@ class OrderService
         }
 
         $workers = $data['workers'];
+        $dates = $data['dates'];
+
         unset($data['workers']);
+        unset($data['dates']);
 
         $order = order::create($data);
 
-        $order->workers()->sync($workers);
+        $syncData = [];
+        foreach($workers as $index => $workerId){
+            $syncData[$workerId] = ['date' => $dates[$index]];
+        }
+        $order->workers()->sync($syncData);
 
         return $order;
     }
@@ -49,10 +56,20 @@ class OrderService
         }
 
         $workers = $data['workers'];
+        $dates = $data['dates'];
+
         unset($data['workers']);
+        unset($data['dates']);
 
         $order->update($data);
-        $order->workers()->sync($workers);
+
+        $syncData = [];
+        foreach ($workers as $index => $workerId) {
+            $syncData[$workerId] = ['date' => $dates[$index]];
+        }
+
+        $order->workers()->sync($syncData);
+
 
         return $order->fresh();
     }
