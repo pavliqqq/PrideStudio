@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/orders/{order}', [OrderController::class, 'destroy']);
 
 
+    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus']);
+
     Route::post('/workers/create', [WorkerController::class, 'store']);
     Route::patch('/workers/{worker}', [WorkerController::class, 'update']);
     Route::delete('/workers/{worker}', [WorkerController::class, 'destroy']);

@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById('order-image').src = imageUrl;
         document.getElementById("order-description").textContent = order.description || "Нет описания";
         document.getElementById("order-status").textContent = order.status;
+        document.getElementById("order-number").textContent = order.number;
         document.getElementById("order-price").textContent = order.price;
 
 

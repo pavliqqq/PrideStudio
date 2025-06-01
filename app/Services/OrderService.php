@@ -48,6 +48,14 @@ class OrderService
 
         return $order;
     }
+    public function updateStatus($request, $order){
+        $order->workers()->updateExistingPivot(
+            $request->worker_id,
+            ['status' => $request->status]
+        );
+
+        return $order->fresh();
+    }
     public function update($request, $order, $data)
     {
         if ($request->hasFile('image')) {

@@ -184,3 +184,13 @@ h2 {
 .order-info a:hover {
     text-decoration: underline;
 }
+
+.order-status {
+    margin-top: 5px;
+}
+
+.status-select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

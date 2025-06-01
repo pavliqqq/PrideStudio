@@ -50,7 +50,7 @@ class WorkerService
 
         return $worker
             ->orders()
-            ->withPivot('date')
+            ->withPivot('date','status')
             ->whereBetween('order_worker.date',[$startDate,$endDate])
             ->orderBy('order_worker.date')
             ->get()

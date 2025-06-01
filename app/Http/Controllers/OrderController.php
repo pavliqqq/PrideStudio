@@ -49,7 +49,24 @@ class OrderController extends Controller
         $order = $this->orderService->create($request, $data);
         return response()->json($order, 201);
     }
+    public function updateStatus(Request $request, Order $order){
+        $worker = auth()->user();
+        if (!$worker) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
+        $request->validate([
+            'status' => 'required|in:новый,в работе,завершён',
+            'worker_id' => 'required'
+        ]);
+
+        if (!$order->workers->contains($worker->id)) {
+            return response()->json(['message' => 'У вас нет доступа к этому заказу'], 403);
+        }
+
+        $order = $this->orderService->updateStatus($request, $order);
+        return response()->json($order, 200);
+    }
     public function update(Request $request, Order $order)
     {
         $this->authorize('update', $order);

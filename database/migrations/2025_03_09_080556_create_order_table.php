@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('number',10);
             $table->string('image');
-            $table->enum('status',['new','in process','ended']);
+            $table->enum('status',['новый','в работе','завершён']);
             $table->decimal('price');
 
             //create relationships
