@@ -41,7 +41,6 @@ class OrderController extends Controller
             'description' => 'nullable|string',
             'number' => 'required', 'regex:/^0\d{9}$/',
             'image' => 'required | image | mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required',
             'price' => 'required|numeric|min:0',
             'workers' => 'nullable|array',
             'dates' => 'nullable|array'
@@ -76,7 +75,6 @@ class OrderController extends Controller
             'description' => 'nullable|string',
             'number' => 'required', 'regex:/^0\d{9}$/',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required',
             'price' => 'required|numeric|min:0',
             'workers' => 'nullable|array',
             'dates' => 'nullable|array'

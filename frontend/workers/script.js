@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if(role!='admin'){
-        const createButton = document.getElementById('create_button');
+        const createButtonDiv = document.getElementById('workers_header');
+        const workersCon = document.getElementById('workers_con');
 
-        createButton.style.display = 'none';
+        workersCon.style.marginTop = '100px';
+        createButtonDiv.style.display = 'none';
     }
     let currentPage = 1;
 

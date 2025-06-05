@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("worker-id").value = worker.id;
         document.getElementById("worker-name").value = worker.full_name;
         document.getElementById("worker-post").value = worker.post;
-        document.getElementById("worker-password").value = worker.password;
     } catch (error) {
         console.error("Ошибка при загрузке заказа:", error);
     }

@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("order-name").value = order.name;
         document.getElementById("order-description").textContent = order.description || "Нет описания";
         document.getElementById("order-number").value = order.number;
-        document.getElementById("order-status").value = order.status;
         document.getElementById("order-price").value = order.price;
 
         const workersList = document.getElementById("workers-list");
@@ -89,7 +88,6 @@ document.getElementById("edit-order-form").addEventListener("submit", async func
     formData.append("name", document.getElementById("order-name").value);
     formData.append("description", document.getElementById("order-description").value);
     formData.append("number", document.getElementById("order-number").value);
-    formData.append("status", document.getElementById("order-status").value);
     formData.append("price", document.getElementById("order-price").value);
 
     const imageInput = document.getElementById("order-image");

@@ -56,7 +56,6 @@ document.getElementById("add-order-form").addEventListener("submit", async funct
     formData.append("name", document.getElementById("order-name").value);
     formData.append("description", document.getElementById("order-description").value);
     formData.append("number", document.getElementById("order-number").value);
-    formData.append("status", document.getElementById("order-status").value);
     formData.append("price", document.getElementById("order-price").value);
 
     const imageInput = document.getElementById("order-image");

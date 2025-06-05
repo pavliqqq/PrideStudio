@@ -79,9 +79,10 @@ class WorkerService
             $data['image'] = 'storage/' . $path;
         }
 
-        $password = $data['password'];
-        $data['password'] = Hash::make($password);
-        $data['role'] = 'worker';
+        if($request->filled('password')) {
+            $password = $data['password'];
+            $data['password'] = Hash::make($password);
+        }
 
         return $worker->update($data);
     }

@@ -93,6 +93,36 @@ body {
     font-weight: bold;
 }
 
+.order-thumb {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    text-transform: capitalize;
+}
+
+
+.status-новый {
+    background-color: #a0aec0;
+}
+.status-в-работе {
+    background-color: #4299e1;
+}
+.status-завершён {
+    background-color: #48bb78;
+}
+
 #search_btn {
     background-color: #333;
     color: white;

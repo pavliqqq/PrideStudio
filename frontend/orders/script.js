@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         data.data.forEach(order => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${order.id}</td>
+                <td>
+                    <img src="http://127.0.0.1:8000/${order.image}" alt="${order.name}" class="order-thumb">
+                </td>
                 <td><a href="order.html?id=${order.id}">${order.name}</a></td>
                 <td>${order.number}</td>
                 <td>${order.status}</td>
