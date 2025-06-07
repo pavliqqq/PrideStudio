@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список рабочих</title>
-    <link rel="stylesheet" href="workers/style.css">
-    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="./workers/style.css">
+    <link rel="stylesheet" href="./navbar/style.css"> <!-- Подключаем стили -->
 </head>
 <body>
 
@@ -17,16 +17,16 @@
             <h1>Список рабочих</h1>
         </div>
     </section>
-    
+
     <!-- Хедер блока (кнопка "Создать") -->
     <div class="workers-header" id = "workers_header">
         <div class="container">
             <a class="btn" href="addWorker.html" id="create_button">Создать</a>
         </div>
     </div>
-    
+
     <!-- Таблица рабочих -->
-    <section class="workers"> 
+    <section class="workers">
         <div class="container" id="workers_con">
             <table>
                 <thead>
@@ -42,14 +42,14 @@
             </table>
 
             <div id="pagination" style="margin-top: 20px;"></div>
-            
+
         </div>
     </section>
 
-    <script src="workers/script.js"></script>
+    <script src="./workers/script.js"></script>
 
     <script type="module">
-        import { loadNavbar } from '/navbar/script.js';
+        import { loadNavbar } from './navbar/script.js';
         loadNavbar();
       </script>
 </body>

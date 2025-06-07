@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Заказы - PrideStudio</title>
-    <link rel="stylesheet" href="/editWorker/style.css">
-    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="./editWorker/style.css">
+    <link rel="stylesheet" href="./navbar/style.css"> <!-- Подключаем стили -->
 </head>
 <body>
 
@@ -19,21 +19,21 @@
             <h1>Редактирование рабочего</h1>
         </div>
     </div>
-    
+
     <div class="edit-section">
         <div class="edit-container">
             <form id="edit-worker-form" enctype="multipart/form-data">
                 <input type="hidden" id="worker-id">
-    
+
                 <label for="worker-image">Фото</label>
                 <input type="file" id="worker-image" name="image">
-    
+
                 <label for="worker-name">Имя</label>
                 <input type="text" id="worker-name" required>
-    
+
                 <label for="worker-post">Должность</label>
                 <input type="text" id="worker-post" required>
-    
+
                 <label for="worker-password">Пароль</label>
                 <input type="text" id="worker-password">
 
@@ -46,10 +46,10 @@
     </div>
 
 
-    <script src="/editWorker/script.js"></script>
+    <script src="./editWorker/script.js"></script>
 
     <script type="module">
-        import { loadNavbar } from '/navbar/script.js';
+        import { loadNavbar } from './navbar/script.js';
         loadNavbar();
       </script>
 </body>

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Заказы - PrideStudio</title>
-    <link rel="stylesheet" href="/addWorker/style.css">
-    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="./addWorker/style.css">
+    <link rel="stylesheet" href="./navbar/style.css"> <!-- Подключаем стили -->
 </head>
 <body>
 
@@ -17,12 +17,12 @@
     <div class="con">
         <h1>Добавить нового рабочего</h1>
         <form id="add-worker-form" enctype="multipart/form-data">
-        
+
             <input type="hidden" id="worker-id">
 
             <label for="worker-image">Изображение</label>
             <input type="file" id="worker-image" name="image">
-            
+
             <label for="worker-name">Имя</label>
             <input type="text" id="worker-name" required>
 
@@ -31,18 +31,18 @@
 
             <label for="worker-password">Пароль</label>
             <input type="text" id="worker-password" required>
-            
+
             <button type="submit" class="btn">Добавить</button>
         </form>
     </div>
 
 
-    <script src="/addWorker/script.js"></script>
-   
+    <script src="./addWorker/script.js"></script>
+
     <script type="module">
-      import { loadNavbar } from '/navbar/script.js';
+      import { loadNavbar } from './navbar/script.js';
       loadNavbar();
     </script>
-      
+
 </body>
 </html>

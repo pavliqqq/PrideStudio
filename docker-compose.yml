@@ -1,0 +1,30 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-app
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/var/www
+            - ./storage:/var/www/storage
+        depends_on:
+            - mysql
+        working_dir: /var/www
+        command: php artisan serve --host=0.0.0.0 --port=8000
+
+    mysql:
+        image: mysql:8.0
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: root123
+            MYSQL_DATABASE: pridestudio
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql-data:/var/lib/mysql
+            - ./docker/mysql-init:/docker-entrypoint-initdb.d:ro
+
+volumes:
+    mysql-data:

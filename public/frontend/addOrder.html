@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Заказы - PrideStudio</title>
-    <link rel="stylesheet" href="/editOrder/style.css">
-    <link rel="stylesheet" href="/navbar/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="./addOrder/style.css">
+    <link rel="stylesheet" href="./navbar/style.css"> <!-- Подключаем стили -->
 </head>
 <body>
 
@@ -15,20 +15,20 @@
 
     <div class="hero">
         <div class="container">
-            <h1>Редактирование заказа</h1>
+            <h1>Добавить новый заказ</h1>
         </div>
     </div>
 
-    <div class="edit-section">
-        <div class="edit-container">
-        <form id="edit-order-form" enctype="multipart/form-data">
-        
+    <div class="create-section">
+        <div class="create-container">
+        <form id="add-order-form" enctype="multipart/form-data">
+
             <div class="form_top_con">
                 <input type="hidden" id="order-id">
 
                 <label for="order-image">Изображение</label>
                 <input type="file" id="order-image" name="image">
-                
+
                 <label for="order-name">Название</label>
                 <input type="text" id="order-name" required>
 
@@ -37,19 +37,19 @@
 
                 <label for="order-number">Номер телефона</label>
                 <input type="text" name="number" id="order-number" placeholder="0_________">
-                
+
                 <label for="order-price">Цена (грн)</label>
                 <input type="text" id="order-price" required>
-            
+
             </div>
             <h2>Назначенные рабочие</h2>
             <div id="workers-list">
                 <!-- Чекбоксы рабочих будут вставляться сюда -->
             </div>
-            
+
             <div class="form_buttons">
                 <a href="#" id="back-button" class="btn back-btn">Назад</a>
-                <button type="submit" class="btn">Сохранить</button>
+                <button type="submit" class="btn">Добавить</button>
             </div>
         </form>
     </div>
@@ -65,11 +65,12 @@
     </script>
 
 
-    <script src="/editOrder/script.js"></script>
+    <script src="./addOrder/script.js"></script>
 
     <script type="module">
-        import { loadNavbar } from '/navbar/script.js';
+        import { loadNavbar } from './navbar/script.js';
         loadNavbar();
       </script>
+
 </body>
 </html>
